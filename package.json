@@ -1,0 +1,36 @@
+{
+  "name": "deku-page-layout",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "babel-node test.jsx && npm run lint",
+    "lint": "semistandard | snazzy",
+    "build": "mkdir -p dist && babel index.jsx --out-dir dist",
+    "prepublish": "npm run build"
+  },
+  "author": "mic.com",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/micnews/deku-page-layout.git"
+  },
+  "bugs": {
+    "url": "https://github.com/micnews/deku-page-layout/issues"
+  },
+  "homepage": "https://github.com/micnews/deku-page-layout#readme",
+  "description": "Render page layout using Deku",
+  "dependencies": {
+    "escape-html": "^1.0.3",
+    "virtual-element": "^1.2.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.2.0",
+    "babel-plugin-transform-react-jsx": "^6.1.18",
+    "babel-preset-es2015": "^6.1.18",
+    "deku": "^1.0.0",
+    "semistandard-deku": "github:micnews/semistandard#deku",
+    "snazzy": "^2.0.1",
+    "tape": "^4.2.2",
+    "tsml": "^1.0.1"
+  }
+}
