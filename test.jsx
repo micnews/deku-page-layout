@@ -111,3 +111,23 @@ test('render advanced layout', t => {
     </html>`);
   t.end();
 });
+
+test('inline json script tag', t => {
+  const json = {
+    value: 'abc',
+    value2: 10
+  };
+
+  const html = renderString(tree(<Layout scripts={[{json, id: 'initial-json'}]} />));
+  t.equal(html, tsml`<html>
+    <head>
+      <meta content="en" name="language"></meta>
+      <meta charset="utf-8"></meta><meta name="viewport" content="width=device-width" initial-scale="1.0" maximum-scale="1.0" user-scalable="no"></meta>
+      <script id="initial-json" type="application/json">{"value":"abc","value2":10}</script>
+    </head>
+    <body>
+      <div id="body"></div>
+    </body>
+    </html>`);
+  t.end();
+});

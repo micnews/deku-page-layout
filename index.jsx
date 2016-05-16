@@ -45,9 +45,11 @@ export default {
           }
 
           if (v.content) {
-            return (<script innerHTML={String(v.content)
-              .replace(/<\/script>/g, '</" + "script>')
-              .replace(new RegExp('\u2028|\u2029', 'g'), '')}></script>);
+            return <script innerHTML={String(v.content)}></script>;
+          }
+
+          if (v.json) {
+            return <script id={v.id || 'json'} type='application/json' innerHTML={JSON.stringify(v.json)}></script>;
           }
 
           throw new Error('unknown script type');
