@@ -21,7 +21,6 @@
   "description": "Render page layout using Deku",
   "dependencies": {
     "escape-html": "^1.0.3",
-    "tsml": "^1.0.1",
     "virtual-element": "^1.2.0"
   },
   "devDependencies": {
@@ -31,6 +30,7 @@
     "deku": "^1.0.0",
     "semistandard-deku": "github:micnews/semistandard#deku",
     "snazzy": "^2.0.1",
-    "tape": "^4.2.2"
+    "tape": "^4.2.2",
+    "tsml": "^1.0.1"
   }
 }
