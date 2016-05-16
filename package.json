@@ -1,6 +1,6 @@
 {
   "name": "deku-page-layout",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "scripts": {
     "test": "babel-node test.jsx && npm run lint",
