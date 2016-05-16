@@ -1,5 +1,5 @@
 # deku-page-layout
-Render page layout using Deku. Useful for apps that use already use [Deku](https://github.com/anthonyshort/deku) to avoid another template engine dependency.
+Render page layout using Deku. Useful for apps that already use [Deku](https://github.com/anthonyshort/deku) to avoid another template engine dependency.
 
 ## USAGE
 
