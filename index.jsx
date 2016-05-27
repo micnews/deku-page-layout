@@ -3,7 +3,8 @@ import escape from 'escape-html';
 
 export default {
   render ({props}) {
-    const {title = '', description = '', canonicalUrl = '', language = 'en'} = props;
+    const {title = '', description = '', language = 'en'} = props;
+    const {canonicalUrl = '', alternateUrl = ''} = props;
     const {openGraph = null, twitterCard = null} = props;
     const {faviconPng} = props;
     const {css = []} = props;
@@ -33,6 +34,7 @@ export default {
         {twitterCard ? <meta name='twitter:description' content={escape(twitterCard.description || description)} /> : ''}
         {twitterCard ? <meta name='twitter:image' content={escape(twitterCard.image || '')} /> : ''}
         {canonicalUrl ? <link rel='canonical' href={escape(canonicalUrl)} /> : ''}
+        {alternateUrl ? <link rel='alternate' href={escape(alternateUrl)} /> : ''}
         {faviconPng ? <link rel='icon' type='image/png' href={escape(faviconPng)} /> : ''}
         {css.map(v => <link rel='stylesheet' type='text/css' href={escape(v)} />)}
         {scripts.map(v => {

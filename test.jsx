@@ -67,6 +67,7 @@ test('render advanced layout', t => {
   const html = renderString(tree(<Layout
     title='Page title'
     canonicalUrl='https://example.com/canonical'
+    alternateUrl='https://example.com/alternate'
     description='Page description'
     css={css}
     openGraph={openGraph}
@@ -96,6 +97,7 @@ test('render advanced layout', t => {
       <meta name="twitter:description" content="tw description"></meta>
       <meta name="twitter:image" content="https://example.com/twitter-image.png"></meta>
       <link rel="canonical" href="https://example.com/canonical"></link>
+      <link rel="alternate" href="https://example.com/alternate"></link>
       <link rel="stylesheet" type="text/css" href="/index.css"></link>
       <link rel="stylesheet" type="text/css" href="/common.css"></link>
       <link rel="stylesheet" type="text/css" href="/other.css"></link>
