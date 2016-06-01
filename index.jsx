@@ -4,12 +4,15 @@ import escape from 'escape-html';
 export default {
   render ({props}) {
     const {title = '', description = '', language = 'en'} = props;
-    const {canonicalUrl = '', alternateUrl = ''} = props;
+    const {author = '', medium = '', robots = ''} = props;
+    const {canonicalUrl = '', alternateUrl = '', ampUrl = ''} = props;
     const {openGraph = null, twitterCard = null} = props;
     const {faviconPng} = props;
     const {css = []} = props;
     const {scripts = []} = props;
     const {content = ''} = props;
+    const {appleTouchIcon = {}} = props;
+    const {noscript} = props;
 
     return (<html>
       <head>
@@ -20,6 +23,9 @@ export default {
         <meta name='viewport' content='width=device-width' initial-scale='1.0' maximum-scale='1.0' user-scalable='no' />
         {title ? <title>{title}</title> : ''}
         {description ? <meta content={escape(description)} name='description' /> : ''}
+        {robots ? <meta name='robots' content={escape(robots)} /> : ''}
+        {author ? <meta name='author' content={escape(author)} /> : ''}
+        {medium ? <meta name='medium' content={escape(medium)} /> : ''}
         {openGraph ? <meta content='website' property='og:type' /> : ''}
         {openGraph ? <meta content={escape(openGraph.title || title)} property='og:title' /> : ''}
         {openGraph ? <meta content={escape(openGraph.description || description)} property='og:description' /> : ''}
@@ -35,7 +41,17 @@ export default {
         {twitterCard ? <meta name='twitter:image' content={escape(twitterCard.image || '')} /> : ''}
         {canonicalUrl ? <link rel='canonical' href={escape(canonicalUrl)} /> : ''}
         {alternateUrl ? <link rel='alternate' href={escape(alternateUrl)} /> : ''}
+        {ampUrl ? <link rel='amphtml' href={escape(ampUrl)} /> : ''}
         {faviconPng ? <link rel='icon' type='image/png' href={escape(faviconPng)} /> : ''}
+        {Object.keys(appleTouchIcon).map(iconSize => {
+          const iconHref = appleTouchIcon[iconSize];
+
+          if (iconSize === 'default') {
+            return <link rel='apple-touch-icon' href={escape(iconHref)} />;
+          }
+
+          return <link rel='apple-touch-icon' sizes={iconSize} href={escape(iconHref)} />;
+        })}
         {css.map(v => <link rel='stylesheet' type='text/css' href={escape(v)} />)}
         {scripts.map(v => {
           if (v.src) {
@@ -54,8 +70,13 @@ export default {
             return <script id={v.id || 'json'} type='application/json' innerHTML={JSON.stringify(v.json)}></script>;
           }
 
+          if (v.schema) {
+            return <script type='application/ld+json' innerHTML={JSON.stringify(v.schema)}></script>;
+          }
+
           throw new Error('unknown script type');
         })}
+        {noscript ? <noscript>{noscript}</noscript> : ''}
       </head>
       <body>
         <div id='body' innerHTML={content}></div>
